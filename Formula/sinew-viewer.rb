@@ -6,14 +6,15 @@
 class SinewViewer < Formula
   desc "Live ANNY body viewer driven by /sinew and /vr OSC"
   homepage "https://github.com/sinew-mocap/viewer"
-  url "https://github.com/sinew-mocap/viewer/releases/download/v0.4.0/sinew-viewer-macos.zip"
-  version "0.4.0"
-  sha256 "f9d5a03feafb19590f3598b6c6a1505a2d6c658315e9e51b524c8b3a60dfe909"
+  url "https://github.com/sinew-mocap/viewer/releases/download/v0.4.1/sinew-viewer-macos.zip"
+  version "0.4.1"
+  sha256 "5deb6980220172a20af3b4ceebfc67e15ee872c41deddb0c29d78d1febc890d4"
   license "MIT"
 
   def install
-    bin.install "anny_demo"
-    pkgshare.install "lbs.spv"
+    # anny_demo resolves lbs.spv and the soma_pheno.bin phenotype model next to its
+    # own executable, so install them alongside it (this is what renders the body).
+    bin.install "anny_demo", "lbs.spv", "soma_pheno.bin"
   end
 
   test do
