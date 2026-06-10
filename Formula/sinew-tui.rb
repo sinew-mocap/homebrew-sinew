@@ -5,8 +5,8 @@
 class SinewTui < Formula
   desc "Slim Sinew driver — rebocap dongle to /sinew OSC with a terminal monitor"
   homepage "https://github.com/sinew-mocap/driver"
-  url "https://github.com/sinew-mocap/driver/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "aa235b10c74b183d416603660d1f3f880eae7d30bd43d3e217e9a4c47a6b9fd8"
+  url "https://github.com/sinew-mocap/driver/archive/refs/tags/v0.4.1.tar.gz"
+  sha256 "216933b68b9f83e80bf6126048dd9f1b575d1b954dbad2400712592a2b228a4e"
   license "MIT"
   head "https://github.com/sinew-mocap/driver.git", branch: "main"
 
@@ -23,12 +23,13 @@ class SinewTui < Formula
     (buildpath/"ftxui-src").install resource("ftxui")
     system "cmake", "-S", ".", "-B", "build",
            "-DFETCHCONTENT_SOURCE_DIR_FTXUI=#{buildpath}/ftxui-src",
+           "-DSINEW_VERSION=#{version}",
            *std_cmake_args
     system "cmake", "--build", "build"
     bin.install "build/sinew_tui"
   end
 
   test do
-    assert_match "sinew_tui", shell_output("#{bin}/sinew_tui --version")
+    assert_match "sinew_tui #{version}", shell_output("#{bin}/sinew_tui --version")
   end
 end
