@@ -16,7 +16,10 @@ class Sinew < Formula
   depends_on "sinew-mocap/sinew/sinew-vr-bridge"
 
   def install
-    (prefix/"README.md").write <<~EOS
+    # Write into pkgshare (share/sinew), not the keg root: Homebrew treats a
+    # top-level README.md as a metafile and ignores it, so a keg containing only
+    # that counts as an "Empty installation".  A file under a subdir keeps it real.
+    (pkgshare/"README.md").write <<~EOS
       Sinew mocap starter pack.
 
       This metapackage installs every Sinew app:
@@ -27,6 +30,6 @@ class Sinew < Formula
   end
 
   test do
-    assert_path_exists prefix/"README.md"
+    assert_path_exists pkgshare/"README.md"
   end
 end
