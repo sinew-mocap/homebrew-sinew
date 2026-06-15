@@ -11,6 +11,7 @@ class Sinew < Formula
   sha256 "216933b68b9f83e80bf6126048dd9f1b575d1b954dbad2400712592a2b228a4e"
   license "MIT"
 
+  depends_on "sinew-mocap/sinew/sinew-osctest"
   depends_on "sinew-mocap/sinew/sinew-tui"
   depends_on "sinew-mocap/sinew/sinew-viewer"
   depends_on "sinew-mocap/sinew/sinew-vr-bridge"
@@ -26,6 +27,7 @@ class Sinew < Formula
         sinew-tui        rebocap dongle to /sinew OSC, with a terminal monitor
         sinew-vr-bridge  SteamVR HMD/controller poses to /vr OSC
         sinew-viewer     anny_demo, the live ANNY body viewer
+        sinew-osctest    minimal Lean OSC sender for testing the /sinew stream
     EOS
   end
 
